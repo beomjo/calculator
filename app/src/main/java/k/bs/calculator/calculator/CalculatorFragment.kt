@@ -1,11 +1,11 @@
 package k.bs.calculator.calculator
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import k.bs.calculator.MainViewModel
 import k.bs.calculator.R
 import k.bs.calculator.binding.BindingFragment
 import k.bs.calculator.databinding.CalculatorFragmentBinding
+import k.bs.calculator.extension.observe
 import org.koin.android.ext.android.inject
 
 class CalculatorFragment : BindingFragment<CalculatorFragmentBinding>() {
@@ -28,9 +28,11 @@ class CalculatorFragment : BindingFragment<CalculatorFragmentBinding>() {
     }
 
     private fun observing() {
-        calculatorVm.numberInput.observe(this, Observer {
-            mainVm.keyInputLiveData.value = it
-        })
+        observe(calculatorVm.numberInputLiveData, ::keyInputEvent)
+    }
+
+    private fun keyInputEvent(it: String?) {
+        mainVm.keyInputLiveData.value = it
     }
 
 }
