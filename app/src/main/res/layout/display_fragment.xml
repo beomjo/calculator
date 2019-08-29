@@ -14,12 +14,16 @@
         android:layout_height="match_parent"
         tools:context=".display.DisplayFragment">
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:layout_margin="10dp"
-            android:text="@{vm.mainVm.keyInputLiveData}" />
+            android:gravity="center_vertical"
+            android:ellipsize="start"
+            android:singleLine="true"
+            android:text="@{vm.mainVm.keyInputLiveData}"
+            android:textSize="25dp"
+            tools:text="123" />
 
     </LinearLayout>
 </layout>
