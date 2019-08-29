@@ -1,7 +1,6 @@
 package k.bs.calculator.display
 
 import androidx.lifecycle.ViewModel
+import k.bs.calculator.MainViewModel
 
-class DisplayViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
-}
+class DisplayViewModel(val mainVm: MainViewModel) : ViewModel()

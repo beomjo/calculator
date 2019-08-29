@@ -1,25 +1,25 @@
 package k.bs.calculator.display
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProviders
 import k.bs.calculator.R
 import k.bs.calculator.binding.BindingFragment
 import k.bs.calculator.databinding.DisplayFragmentBinding
+import org.koin.android.ext.android.inject
 
 class DisplayFragment : BindingFragment<DisplayFragmentBinding>() {
 
-    companion object {
-        fun newInstance() = DisplayFragment()
-    }
-
-    private lateinit var viewModel: DisplayViewModel
+    private val displayVm: DisplayViewModel by inject()
 
     override fun getLayoutResId(): Int = R.layout.display_fragment
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(DisplayViewModel::class.java)
-        // TODO: Use the ViewModel
+        setBinding()
+    }
+
+    private fun setBinding() {
+        binding.lifecycleOwner = activity
+        binding.vm = displayVm
     }
 
 }

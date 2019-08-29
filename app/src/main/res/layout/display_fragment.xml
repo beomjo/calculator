@@ -2,9 +2,10 @@
 <layout>
 
     <data>
+
         <variable
             name="vm"
-            type="k.bs.calculator.databinding.DisplayFragmentBinding" />
+            type="k.bs.calculator.display.DisplayViewModel" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            android:text="@{vm.mainVm.keyInputLiveData}" />
 
     </LinearLayout>
 </layout>
