@@ -1,15 +1,12 @@
 package k.bs.calculator.display
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-
+import androidx.lifecycle.ViewModelProviders
 import k.bs.calculator.R
+import k.bs.calculator.binding.BindingFragment
+import k.bs.calculator.databinding.DisplayFragmentBinding
 
-class DisplayFragment : Fragment() {
+class DisplayFragment : BindingFragment<DisplayFragmentBinding>() {
 
     companion object {
         fun newInstance() = DisplayFragment()
@@ -17,12 +14,7 @@ class DisplayFragment : Fragment() {
 
     private lateinit var viewModel: DisplayViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.display_fragment, container, false)
-    }
+    override fun getLayoutResId(): Int = R.layout.display_fragment
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

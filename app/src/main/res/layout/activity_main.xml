@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+<layout>
+    <data>
+        <variable
+            name="vm"
+            type="k.bs.calculator.MainViewModel" />
+    </data>
 
-    <fragment
-        android:id="@+id/displayFramgnet"
-        android:name="k.bs.calculator.display.DisplayFragment"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/calculatorFragment"
-        android:name="k.bs.calculator.calculator.CalculatorFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="3" />
+        <fragment
+            android:id="@+id/displayFramgnet"
+            android:name="k.bs.calculator.display.DisplayFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-</LinearLayout>
+        <fragment
+            android:id="@+id/calculatorFragment"
+            android:name="k.bs.calculator.calculator.CalculatorFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3" />
+
+    </LinearLayout>
+</layout>
