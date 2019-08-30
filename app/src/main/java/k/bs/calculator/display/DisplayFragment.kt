@@ -1,14 +1,17 @@
 package k.bs.calculator.display
 
 import android.os.Bundle
+import k.bs.calculator.MainActivity
 import k.bs.calculator.R
 import k.bs.calculator.binding.BindingFragment
 import k.bs.calculator.databinding.DisplayFragmentBinding
-import org.koin.android.ext.android.inject
+import k.bs.calculator.module.mainScope
+import org.koin.androidx.viewmodel.ext.android.getKoin
+import org.koin.androidx.viewmodel.ext.koin.getViewModel
 
 class DisplayFragment : BindingFragment<DisplayFragmentBinding>() {
 
-    private val displayVm: DisplayViewModel by inject()
+    private lateinit var displayVm: DisplayViewModel
 
     override fun getLayoutResId(): Int = R.layout.display_fragment
 
@@ -18,8 +21,8 @@ class DisplayFragment : BindingFragment<DisplayFragmentBinding>() {
     }
 
     private fun setBinding() {
+        displayVm = getKoin().getOrCreateScope(mainScope).getViewModel(activity as MainActivity)
         binding.lifecycleOwner = activity
         binding.vm = displayVm
     }
-
 }
