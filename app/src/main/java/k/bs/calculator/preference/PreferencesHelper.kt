@@ -8,14 +8,18 @@ import k.bs.calculator.util.AppInstance
 
 object PreferencesHelper {
 
-    private val sharedPreferences: SharedPreferences
-        get() = PreferenceManager.getDefaultSharedPreferences(AppInstance.get())
+    private val sharedPreferences: SharedPreferences?
+        get() =
+            if (AppInstance.get() != null)
+                PreferenceManager.getDefaultSharedPreferences(AppInstance.get())
+            else
+                null
 
     fun clear() {
         sharedPreferences
-            .edit()
-            .clear()
-            .apply()
+            ?.edit()
+            ?.clear()
+            ?.apply()
     }
 
     operator fun set(key: Any, anyValue: Any) {
@@ -23,9 +27,10 @@ object PreferencesHelper {
     }
 
     operator fun set(key: Any, value: CharSequence) {
-        sharedPreferences.edit()
-            .putString(key.toString(), value.toString())
-            .apply()
+        sharedPreferences
+            ?.edit()
+            ?.putString(key.toString(), value.toString())
+            ?.apply()
     }
 
 
@@ -35,12 +40,14 @@ object PreferencesHelper {
 
     @JvmOverloads
     operator fun get(key: Any, defaultValue: String = ""): String {
-        return sharedPreferences.getString(key.toString(), defaultValue) ?: defaultValue
+        return sharedPreferences
+            ?.getString(key.toString(), defaultValue) ?: defaultValue
     }
 
     fun remove(key: Any) {
-        sharedPreferences.edit()
-            .remove(key.toString())
-            .apply()
+        sharedPreferences
+            ?.edit()
+            ?.remove(key.toString())
+            ?.apply()
     }
 }

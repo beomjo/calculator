@@ -2,26 +2,28 @@ package k.bs.calculator.calculator
 
 import android.view.View
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import k.bs.calculator.preference.PreferencesHelper
 
 class CalculatorViewModel : ViewModel() {
 
-    val numberInputLiveData = MutableLiveData<String>()
+    private val _numberInputLiveData = MutableLiveData<String>()
+    val numberInputLiveData: LiveData<String> = _numberInputLiveData
 
-    var operatorType: OperatorType = OperatorType.NONE
-    var buf1: String? = null
-    var buf2: String? = null
-    var resultBuf = ""
-    var nexToTheSign = false
+    private var operatorType: OperatorType = OperatorType.NONE
+    private var buf1: String? = null
+    private var buf2: String? = null
+    private var resultBuf = ""
+    private var nexToTheSign = false
 
     init {
         restore()
     }
 
     private fun restore() {
-        numberInputLiveData.value = PreferencesHelper[DISPLAY]
+        _numberInputLiveData.value = PreferencesHelper[DISPLAY]
         buf1 = PreferencesHelper[BUF1].let { if (it.isNotEmpty()) it else null }
         resultBuf = PreferencesHelper[RESULT_BUF].let { if (it.isNotEmpty()) it else "" }
     }
@@ -31,7 +33,7 @@ class CalculatorViewModel : ViewModel() {
         else onInput(view.text.toString())
     }
 
-    private fun onInput(key: String) {
+    fun onInput(key: String) {
         val value = numberInputLiveData.value ?: ""
         when (key) {
             "+" -> storeBuf(OperatorType.ADD)
@@ -56,12 +58,12 @@ class CalculatorViewModel : ViewModel() {
     }
 
     private fun clear() {
-        numberInputLiveData.value = ""
+        _numberInputLiveData.value = ""
         clearBuf()
     }
 
     private fun calculateEnd() {
-        if (remainedResultCheck()) numberInputLiveData.value = resultBuf
+        if (remainedResultCheck()) _numberInputLiveData.value = resultBuf
         else {
             displayResult()
             clearBuf()
@@ -73,7 +75,7 @@ class CalculatorViewModel : ViewModel() {
     private fun displayResult() {
         val result = operatorType.calculate(buf2, buf1)
         resultBuf = result
-        numberInputLiveData.value = result
+        _numberInputLiveData.value = result
     }
 
     private fun clearBuf() {
@@ -88,7 +90,7 @@ class CalculatorViewModel : ViewModel() {
     }
 
     private fun nextToSignEvent(key: String) {
-        numberInputLiveData.value = key
+        _numberInputLiveData.value = key
         buf1 = key
         nexToTheSign = false
     }
@@ -96,7 +98,7 @@ class CalculatorViewModel : ViewModel() {
     private fun displayAppend(value: String, key: String) {
         val input = value + key
         buf1 = input
-        numberInputLiveData.value = input
+        _numberInputLiveData.value = input
     }
 
     override fun onCleared() {
