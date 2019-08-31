@@ -1,9 +1,9 @@
 package k.bs.calculator.test
 
-import com.jraska.livedata.test
 import k.bs.calculator.calculator.CalculatorViewModel
 import k.bs.calculator.calculator.OperatorType
 import k.bs.calculator.module.calculatorModules
+import org.junit.Assert
 import org.junit.Test
 import org.koin.test.inject
 
@@ -123,10 +123,7 @@ class CalculatorTest : TestBase(calculatorModules) {
     }
 
     private fun test(expect: String) {
-        calculator.numberInputLiveData.test()
-            .awaitValue()
-            .assertHasValue()
-            .assertValue(expect)
+        Assert.assertEquals(expect, calculator.numberInputLiveData.value)
     }
 
     private fun calculate(a: String, b: String, opType: OperatorType) {

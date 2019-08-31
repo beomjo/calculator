@@ -101,12 +101,7 @@ class CalculatorViewModel : ViewModel() {
         _numberInputLiveData.value = input
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        save()
-    }
-
-    private fun save() {
+    fun save() {
         PreferencesHelper[DISPLAY] = numberInputLiveData.value ?: ""
         PreferencesHelper[BUF1] = buf1 ?: ""
         PreferencesHelper[RESULT_BUF] = resultBuf

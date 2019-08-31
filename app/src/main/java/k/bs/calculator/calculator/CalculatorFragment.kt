@@ -39,4 +39,9 @@ class CalculatorFragment : BindingFragment<CalculatorFragmentBinding>() {
     private fun keyInputEvent(it: String?) {
         mainVm.keyInputLiveData.value = it
     }
+
+    override fun onStop() {
+        super.onStop()
+        calculatorVm.save()
+    }
 }
