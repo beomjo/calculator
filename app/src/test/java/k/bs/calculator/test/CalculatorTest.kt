@@ -10,7 +10,7 @@ import org.koin.test.inject
 class CalculatorTest : TestBase(calculatorModules) {
 
     private val calculator by inject<CalculatorViewModel>()
-
+//aaa
     @Test
     fun numberInputTest() {
         enter("2")
