@@ -63,19 +63,24 @@ class CalculatorViewModel : ViewModel() {
     }
 
     private fun calculateEnd() {
-        if (remainedResultCheck()) _numberInputLiveData.value = resultBuf
+        if (remainedResultCheck()) resultAppend()
         else {
             displayResult()
-            clearBuf()
+//            clearBuf()
         }
     }
 
-    private fun remainedResultCheck() = resultBuf.isNotEmpty() && buf2.isNullOrEmpty()
+    private fun remainedResultCheck() = resultBuf.isNotEmpty()
 
     private fun displayResult() {
         val result = operatorType.calculate(buf2, buf1)
+
         resultBuf = result
         _numberInputLiveData.value = result
+    }
+
+    private fun resultAppend() {
+        _numberInputLiveData.value = operatorType.calculate(resultBuf, buf2)
     }
 
     private fun clearBuf() {

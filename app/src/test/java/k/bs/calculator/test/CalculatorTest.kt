@@ -115,7 +115,7 @@ class CalculatorTest : TestBase(calculatorModules) {
         enter("=")
         test("200")
         enter("=")
-        test("200")
+        test("300")
     }
 
     private fun enter(key: String) {
