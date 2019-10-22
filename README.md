@@ -1,4 +1,9 @@
-# Calculator
+# Calculator  
+
+
+## Image
+![image](https://user-images.githubusercontent.com/39984656/67265189-1a291200-f4e8-11e9-9d2c-8bed5673746f.png)  
+
 
 ## 기능
 - 0,1,2 와 사칙연산, Clear, =
