@@ -2,7 +2,7 @@
 
 
 ## Image
-![image](https://user-images.githubusercontent.com/39984656/67265189-1a291200-f4e8-11e9-9d2c-8bed5673746f.png)  
+<img src="https://user-images.githubusercontent.com/39984656/67265189-1a291200-f4e8-11e9-9d2c-8bed5673746f.png" width="300" height="500">
 
 
 ## 기능
